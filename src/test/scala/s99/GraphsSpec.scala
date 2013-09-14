@@ -4,7 +4,7 @@ import org.specs2.mutable.Specification
 
 class GraphsSpec extends Specification with GraphsSolutions {
 
-  """ A graph is defined as a set of nodes and a set of edges, where each edge is a pair of nodes.
+  /* A graph is defined as a set of nodes and a set of edges, where each edge is a pair of nodes.
 
   The class to represent a graph is mutable, which isn't in keeping with pure functional programming, but a pure
   functional data structure would make things much, much more complicated. [Pure functional graphs with cycles require
@@ -76,55 +76,61 @@ class GraphsSpec extends Specification with GraphsSolutions {
 
   The notation for labeled graphs can also be used for so-called multi-graphs, where more than one edge (or arc) is
   allowed between two given nodes
-  """
+  */
 
   """ Conversions
 
   Write methods to generate the graph-term and adjacency-list forms from a Graph. Write another method to output the
   human-friendly form for a graph. Make it the toString method for Graph. Write more functions to create graphs from
-  strings. Hint: You might need separate functions for labeled and unlabeled graphs""" >>
-  { Graph.fromString("[b-c, f-c, g-h, d, f-b, k-f, h-g]").toTermForm ===
+  strings. Hint: You might need separate functions for labeled and unlabeled graphs""" >> {
+    Graph.fromString("[b-c, f-c, g-h, d, f-b, k-f, h-g]").toTermForm ===
       List("d", "k", "h", "c", "f", "g", "b", List(("h", "g", ()), ("k", "f", ()), ("f", "b", ()), ("g", "h", ()), ("f", "c", ()), ("b", "c", ())))
 
     Digraph.fromStringLabel("[p>q/9, m>q/7, k, p>m/5]").toAdjacentForm ===
-      List(("m", List(("q", 7))), ("p", List(("m", 5), ("q", 9))), ("k", List()), ("q", List())) }
+      List(("m", List(("q", 7))), ("p", List(("m", 5), ("q", 9))), ("k", List()), ("q", List()))
+  }
 
   """ Path from one node to another one.
 
-  Write a method named findPaths to find acyclic paths from one node to another in a graph. The method should return all paths""" >>
-  { Digraph.fromStringLabel("[p>q/9, m>q/7, k, p>m/5]").findPaths("p", "q") ===
+  Write a method named findPaths to find acyclic paths from one node to another in a graph. The method should return all paths""" >> {
+    Digraph.fromStringLabel("[p>q/9, m>q/7, k, p>m/5]").findPaths("p", "q") ===
       List(List("p", "q"), List("p", "m", "q"))
 
-    Digraph.fromStringLabel("[p>q/9, m>q/7, k, p>m/5]").findPaths("p", "k") === Nil }
+    Digraph.fromStringLabel("[p>q/9, m>q/7, k, p>m/5]").findPaths("p", "k") === Nil
+  }
 
   """ Cycle from a given node
 
   Write a method named findCycles to find closed paths (cycles) starting at a given node in a graph. The method should
-  return all cycles""" >>
-  { Graph.fromString("[b-c, f-c, g-h, d, f-b, k-f, h-g]").findCycles("f") ===
-      List(List("f", "c", "b", "f"), List("f", "b", "c", "f")) }
+  return all cycles""" >> {
+    Graph.fromString("[b-c, f-c, g-h, d, f-b, k-f, h-g]").findCycles("f") ===
+      List(List("f", "c", "b", "f"), List("f", "b", "c", "f"))
+  }
 
   """ Construct all spanning trees
 
   Write a method spanningTrees to construct all spanning trees of a given graph. With this method, find out how many
   spanning trees there are for the graph depicted to the right. The data of this example graph can be found below.
   When you have a correct solution for the spanningTrees method, use it to define two other useful methods: isTree and
-  isConnected. Both are five-minute tasks!""" >>
-  { Graph.fromString("[a-b, b-c, a-c]").spanningTrees === List("[a-b, b-c]", "[a-c, b-c]", "[a-b, a-c]") }
+  isConnected. Both are five-minute tasks!""" >> {
+    Graph.fromString("[a-b, b-c, a-c]").spanningTrees === List("[a-b, b-c]", "[a-c, b-c]", "[a-b, a-c]")
+  }
 
   """ Construct the minimal spanning tree
 
   Write a method minimalSpanningTree to construct the minimal spanning tree of a given labeled graph. Hint: Use Prim's
   Algorithm. A small modification of the solution of P83 does the trick. The data of the example graph to the right can
-  be found below""" >>
-  { Graph.fromStringLabel("[a-b/1, b-c/2, a-c/3]").minimalSpanningTree === "[a-b/1, b-c/2]" }
+  be found below""" >> {
+    Graph.fromStringLabel("[a-b/1, b-c/2, a-c/3]").minimalSpanningTree === "[a-b/1, b-c/2]"
+  }
 
   """ Graph isomorphism
 
   Two graphs G1(N1,E1) and G2(N2,E2) are isomorphic if there is a bijection f: N1 â†’ N2 such that for any nodes X,Y
   of N1, X and Y are adjacent if and only if f(X) and f(Y) are adjacent. Write a method that determines whether two
-  graphs are isomorphic""" >>
-  { Graph.fromString("[a-b]").isIsomorphicTo(Graph.fromString("[5-7]")) === true }
+  graphs are isomorphic""" >> {
+    Graph.fromString("[a-b]").isIsomorphicTo(Graph.fromString("[5-7]")) === true
+  }
 
   """ Node degree and graph coloration
 
@@ -132,26 +138,29 @@ class GraphsSpec extends Specification with GraphsSolutions {
     b) Write a method that lists all nodes of a graph sorted according to decreasing degree.
     c) Use Welsh-Powell's algorithm to paint the nodes of a graph in such a way that adjacent nodes have different
        colors. Make a method colorNodes that returns a list of tuples, each of which contains a node and an integer
-       representing its color""" >>
-  { Graph.fromString("[a-b, b-c, a-c, a-d]").nodes("a").degree === 3
+       representing its color""" >> {
+    Graph.fromString("[a-b, b-c, a-c, a-d]").nodes("a").degree === 3
     Graph.fromString("[a-b, b-c, a-c, a-d]").nodesByDegree === List("Node(a)", "Node(c)", "Node(b)", "Node(d)")
-    Graph.fromString("[a-b, b-c, a-c, a-d]").colorNodes === List(("Node(a)", 1), ("Node(b)", 2), ("Node(c)", 3), ("Node(d)", 2)) }
+    Graph.fromString("[a-b, b-c, a-c, a-d]").colorNodes === List(("Node(a)", 1), ("Node(b)", 2), ("Node(c)", 3), ("Node(d)", 2))
+  }
 
   """ Depth-first order graph traversal
 
   Write a method that generates a depth-first order graph traversal sequence. The starting point should be specified,
-  and the output should be a list of nodes that are reachable from this starting point (in depth-first order)""" >>
-  { Graph.fromString("[a-b, b-c, e, a-c, a-d]").nodesByDepthFrom("d") === List("c", "b", "a", "d") }
+  and the output should be a list of nodes that are reachable from this starting point (in depth-first order)""" >> {
+    Graph.fromString("[a-b, b-c, e, a-c, a-d]").nodesByDepthFrom("d") === List("c", "b", "a", "d")
+  }
 
   """ Connected components.
-  Write a function that splits a graph into its connected components""" >>
-  { Graph.fromString("[a-b, c]").splitGraph === List("[a-b]", "[c]") }
+  Write a function that splits a graph into its connected components""" >> {
+    Graph.fromString("[a-b, c]").splitGraph === List("[a-b]", "[c]")
+  }
 
   """ Bipartite graphs.
-  Write a function that determines whether a given graph is bipartite""" >>
-  { Digraph.fromString("[a>b, c>a, d>b]").isBipartite === true
+  Write a function that determines whether a given graph is bipartite""" >> {
+    Digraph.fromString("[a>b, c>a, d>b]").isBipartite === true
     Graph.fromString("[a-b, b-c, c-a]").isBipartite === false
     Graph.fromString("[a-b, b-c, d]").isBipartite === true
-    Graph.fromString("[a-b, b-c, d, e-f, f-g, g-e, h]").isBipartite === false }
-
+    Graph.fromString("[a-b, b-c, d, e-f, f-g, g-e, h]").isBipartite === false
+  }
 }

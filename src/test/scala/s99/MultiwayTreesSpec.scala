@@ -4,7 +4,7 @@ import org.specs2.mutable.Specification
 
 class MultiwayTreesSpec extends Specification with MultiwayTreesSolutions {
 
-  """ A multiway tree is composed of a root element and a (possibly empty) set of successors which are multiway trees
+  /* A multiway tree is composed of a root element and a (possibly empty) set of successors which are multiway trees
   themselves. A multiway tree is never empty. The set of successor trees is sometimes called a forest.
 
   The code to represent these is somewhat simpler than the code for binary trees, partly because we don't separate
@@ -23,11 +23,12 @@ class MultiwayTreesSpec extends Specification with MultiwayTreesSolutions {
   The example tree is, thus:
 
        MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
-  """
+  */
 
   """ Count the nodes of a multiway tree
-  Write a method nodeCount which counts the nodes of a given multiway tree""" >>
-  { MTree('a', List(MTree('f'))).nodeCount === 2 }
+  Write a method nodeCount which counts the nodes of a given multiway tree""" >> {
+    MTree('a', List(MTree('f'))).nodeCount === 2
+  }
 
   """ Tree construction from a node string
 
@@ -38,22 +39,25 @@ class MultiwayTreesSpec extends Specification with MultiwayTreesSolutions {
        afg^^c^bd^e^^^
 
   Define the syntax of the string and write a function string2MTree to construct an MTree from a String. Make the
-  function an implicit conversion from String. Write the reverse function, and make it the `show` method of MTree""" >>
-  { MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e'))))).show ===
-     "afg^^c^bd^e^^^" }
+  function an implicit conversion from String. Write the reverse function, and make it the `show` method of MTree""" >> {
+    MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e'))))).show ===
+      "afg^^c^bd^e^^^"
+  }
 
   """ Determine the internal path length of a tree
 
   We define the internal path length of a multiway tree as the total sum of the path lengths from the root to all
   nodes of the tree. By this definition, the tree in the figure of problem P70 has an internal path length of 9.
-  Write a method internalPathLength to return that sum""" >>
-  { "afg^^c^bd^e^^^".internalPathLength === 9 }
+  Write a method internalPathLength to return that sum""" >> {
+    "afg^^c^bd^e^^^".internalPathLength === 9
+  }
 
   """ Construct the postorder sequence of the tree nodes
 
    Write a method postorder which constructs the postorder sequence of the nodes of a multiway tree. The result should
-   be a List""" >>
-   { "afg^^c^bd^e^^^".postorder === List('g', 'f', 'c', 'd', 'e', 'b', 'a') }
+   be a List""" >> {
+    "afg^^c^bd^e^^^".postorder === List('g', 'f', 'c', 'd', 'e', 'b', 'a')
+  }
 
   """ Lisp-like tree representation
 
@@ -71,7 +75,7 @@ class MultiwayTreesSpec extends Specification with MultiwayTreesSolutions {
 
   [Note: Much of this problem is taken from the wording of the same problem in the Prolog set. This is certainly one
    way of looking at Lisp notation, but it's not how the language actually represents that syntax internally. I can
-   elaborate more on this, if requested""" >>
-  { MTree("a", List(MTree("b", List(MTree("c"))))).lispyTree === "(a (b c))" }
-
+   elaborate more on this, if requested""" >> {
+    MTree("a", List(MTree("b", List(MTree("c"))))).lispyTree === "(a (b c))"
+  }
 }

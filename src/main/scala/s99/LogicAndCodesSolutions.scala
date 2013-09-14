@@ -1,7 +1,5 @@
 package s99
 
-import Solutions.???
-
 trait LogicAndCodesSolutions { outer =>
 
   implicit def extendBoolean(a: Boolean): ExtendedBoolean = ExtendedBoolean(a)

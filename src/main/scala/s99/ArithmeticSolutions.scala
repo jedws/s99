@@ -1,7 +1,5 @@
 package s99
 
-import Solutions.???
-
 trait ArithmeticSolutions {
 
   // add new functions to integers

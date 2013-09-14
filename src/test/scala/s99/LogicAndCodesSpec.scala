@@ -26,8 +26,7 @@ class LogicAndCodesSpec extends Specification with LogicAndCodesSolutions with D
   true  true  true
   true  false true
   false true  false
-  false false false""" >>
-  { "a" | "b" | "and(a, b)" |>
+  false false false""" >> { "a" | "b" | "and(a, b)" |>
      T  ! T   ! T           |
      T  ! F   ! F           |
      F  ! T   ! F           |
