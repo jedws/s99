@@ -1,43 +1,14 @@
 package s99
 
-object ListsSolutions {
+trait ListsSolutions {
 
-  def last[T](list: List[T]): T =
-    list match {
-      case t :: Nil => t
-      case _ :: ts  => last(ts)
-      case Nil      => throw new NoSuchElementException
-    }
-
-  def penultimate[T](list: List[T]): T =
-    list match {
-      case t :: _ :: Nil => t
-      case _ :: ts       => penultimate(ts)
-      case Nil           => throw new NoSuchElementException
-    }
-
-  def nth[T](n: Int, list: List[T]): T = {
-    def go(n: Int, list: List[T]): T =
-      if (n == 0) list.head
-      else go(n - 1, list.tail)
-    go(n, list)
-  }
-
-  def listLength[T](list: List[T]): Int = {
-    def go(n: Int, list: List[T]): Int =
-      if (list.isEmpty) n
-      else go(n + 1, list.tail)
-    go(0, list)
-  }
-
-  def reverse[T](list: List[T]): List[T] =
-    list.foldLeft(List[T]()) { _.::(_) }
-
-  def isPalindrome[T](list: List[T]): Boolean =
-    list == reverse(list)
-
-  def flatten[A](list: List[List[A]]): List[A] = ???
-
+  def last[T](list: List[T]): T = ???
+  def penultimate[T](list: List[T]): T = ???
+  def nth[T](n: Int, list: List[T]): T = ???
+  def length[T](list: List[T]): Int = ???
+  def reverse[T](list: List[T]): List[T] = ???
+  def isPalindrome[T](list: List[T]): Boolean = ???
+  def flatten(list: List[Any]): List[Any] = ???
   def compress[T](list: List[T]): List[T] = ???
   def pack[T](list: List[T]): List[List[T]] = ???
   def encode[T](list: List[T]): List[(Int, T)] = ???
