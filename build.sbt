@@ -13,6 +13,7 @@ resolvers ++= Seq(
 , "atlassian-internal" at "https://maven.atlassian.com/content/groups/internal/"
 , "Tools Releases"     at "http://oss.sonatype.org/content/repositories/releases"
 , "Tools Snapshots"    at "http://oss.sonatype.org/content/repositories/snapshots"
+, "scalaz-stream"      at "http://dl.bintray.com/pchiusano/maven"
 )
 
 libraryDependencies ++= Seq(
