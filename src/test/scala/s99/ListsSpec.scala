@@ -28,7 +28,7 @@ class ListsSpec extends Specification with ListsSolutions {
   }
 
   "Flatten a nested list structure" >> {
-    flatten(List(List(1, 1), 2, List(3, List(5, 8)))) === List(1, 1, 2, 3, 5, 8)
+    flatten(List(List(1, 1), List(2, 3), List(5, 8))) === List(1, 1, 2, 3, 5, 8)
   }
 
   """ Eliminate consecutive duplicates of list elements
