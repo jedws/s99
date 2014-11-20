@@ -2,7 +2,6 @@ package s99
 import org.specs2.mutable._
 
 class ListsSpec extends Specification with ListsSolutions {
-
   "Find the last element of a list" >> {
     last(List(1, 1, 2, 3, 5, 8)) === 8
   }
@@ -16,7 +15,7 @@ class ListsSpec extends Specification with ListsSolutions {
   }
 
   "Find the number of elements of a list" >> {
-    length(List(1, 1, 2, 3, 5, 8)) === 6
+    listLength(List(1, 1, 2, 3, 5, 8)) === 6
   }
 
   "Reverse a list" >> {
@@ -28,7 +27,7 @@ class ListsSpec extends Specification with ListsSolutions {
   }
 
   "Flatten a nested list structure" >> {
-    flatten(List(List(1, 1), 2, List(3, List(5, 8)))) === List(1, 1, 2, 3, 5, 8)
+    flatten(List(List(1, 1), List(2, 3), List(5, 8))) === List(1, 1, 2, 3, 5, 8)
   }
 
   """ Eliminate consecutive duplicates of list elements
