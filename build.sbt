@@ -4,7 +4,7 @@ version := "1.0"
 
 organization := "org.specs2"
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.5"
 
 /** Dependencies */
 resolvers ++= Seq(
