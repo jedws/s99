@@ -4,7 +4,7 @@ version := "1.0"
 
 organization := "org.specs2"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.7"
 
 /** Dependencies */
 resolvers ++= Seq(
@@ -17,12 +17,13 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.specs2"               %% "specs2"                     % "2.4.9"
-, "org.scalacheck"           %% "scalacheck"                 % "1.11.6"
+  "org.specs2"               %% "specs2-core"                % "3.6.5"
+, "org.specs2"               %% "specs2-scalacheck"          % "3.6.5"
+, "org.scalacheck"           %% "scalacheck"                 % "1.12.5"
 , "org.pegdown"               % "pegdown"                    % "1.0.2"
 )
 
-scalacOptions ++= Seq("-deprecation", "-unchecked")
+scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-language:_")
 
 /** Console */
 initialCommands in console := "import org.specs2._"
