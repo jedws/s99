@@ -3,7 +3,8 @@ package s99
 import org.specs2.mutable.Specification
 import org.specs2.matcher._
 
-class ArithmeticSpec extends Specification with ArithmeticSolutions {
+class ArithmeticSpec extends Specification {
+  import ArithmeticSolutions._
 
   "Determine whether a given integer number is prime" >> {
     foreach(Seq(7, 13, 19)) { i => i must bePrime }
